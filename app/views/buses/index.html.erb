@@ -1,0 +1,61 @@
+
+<table class="table" style="85%">
+<th>Bus Name</th>
+<th>Bus No</th>
+<th>Source</th>
+<th>Destination</th>
+<th>Total Seats</th>
+<th>Rent</th>
+<th>Edit</th>
+<th>Delete</th>
+
+<%@buses.each do |bus|%>
+<tr class="info">
+
+<td>
+<%=bus.bus_name%>
+</td>
+<td>
+<%=bus.bus_no%>
+</td>
+<td>
+<%=bus.source%>
+</td>
+<td>
+<%=bus.destination%>
+</td>
+<td>
+<%=bus.total_seats%>
+</td>
+<td>
+<%=bus.rent%>
+</td>
+<td>
+<button class="btn btn-default"><%= link_to "Edit",{controller: 'buses',
+             action: 'edit',
+             owner_id: current_user.id,
+             id: bus.id},method: :get%>
+             </button>
+</td>
+<td>
+<button class="btn btn-default"><%= link_to "Delete",{controller: 'buses',
+             action: 'destroy',
+             owner_id: current_user.id,
+             id: bus.id},method: :delete%>
+             </button>
+</td>
+<td>
+	<td>
+  <button class="btn btn-default"><%= link_to "Check Reservations",{controller: 'reservations',
+             action: 'check_reservations',
+             owner_id: current_user.id,
+             id: bus.id}, method: :get%>
+         
+       </button>
+
+</td>
+</td>
+<tr>
+	<%end%>
+
+</table>

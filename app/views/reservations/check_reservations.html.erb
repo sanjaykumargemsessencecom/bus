@@ -1,0 +1,50 @@
+  <div class="search_form">
+	 <%= form_tag({controller: "reservations", action: "check_reservations"}, method: "get", class: "orm-inline") do %>
+	  <%= label_tag(:date, "date:") %>
+	  <%= date_field_tag(:date,cookies[:date]) %>
+	  <%= submit_tag("Search") %>
+
+<% end %>
+</div>
+<table class="table" style="width:80%">
+<th>Reservation Id</th>
+<th>Bus No</th>
+<th>Bus Name</th>
+<th>Customer Name</th>
+<th>Booked Seats</th>
+<th>Seats no</th>
+<th>Rent</th>
+<th>Date</th>
+ <% @reservation_value.zip(@user).each do |r, user|%>
+
+<tr class="info">
+<td>
+<%=r.id%>
+</td>
+<td>
+<%=@bus.bus_no%>
+</td>
+<td>
+<%=@bus.bus_name%>
+</td>
+<td>
+<%=user[0].name%>
+</td>
+<td>
+<%=r.booked_seats%>
+</td>
+ <td>
+    <%seat_no(r.id).tap do |seat|%>
+    <%=seat%>
+    <%end%>
+    </td>
+<td>
+<%=@bus.rent%>
+</td>
+<td>
+<%=r.date%>
+</td>
+<tr>
+	 <%end%>
+
+</table>

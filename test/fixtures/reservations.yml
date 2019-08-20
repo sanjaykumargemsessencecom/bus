@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bus: one
+  user: one
+  date: 2019-07-30 14:41:08
+  time: 2019-07-30 14:41:08
+  booked_seats: MyString
+
+two:
+  bus: two
+  user: two
+  date: 2019-07-30 14:41:08
+  time: 2019-07-30 14:41:08
+  booked_seats: MyString

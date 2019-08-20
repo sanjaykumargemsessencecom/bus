@@ -1,0 +1,52 @@
+<h3>Admin Account Page</h3>
+
+<%=@admin.name%>
+<table class="table" style="width:85%">
+<th>Bus Name</th>
+<th>Bus No</th>
+<th>Source</th>
+<th>Destination</th>
+<th>Total Seats</th>
+<th>Rent</th>
+<th>Do<th>
+
+<%@buses.each do |bus|%>
+<tr class="info">
+<td>
+<%=bus.bus_name%>
+</td>
+<td>
+<%=bus.bus_no%>
+</td>
+<td>
+<%=bus.source%>
+</td>
+<td>
+<%=bus.destination%>
+</td>
+<td>
+<%=bus.total_seats%>
+</td>
+<td>
+<%=bus.rent%>
+</td>
+<td>
+	<% if booked?(bus.id)%>
+<button class="btn btn-default"><%= link_to "Book It",{controller: 'reservations',
+             action: 'show',
+             customer_id: current_user.id,
+             id: bus.id}%>
+         </button>
+         <%else%>
+<button class="btn btn-default"><%= link_to "Cancel",{controller: 'reservations',
+             action: 'destroy',
+             customer_id: current_user.id,
+             id: bus.id},method: :delete%>
+             </button>
+         <%end%>
+
+</td>
+<tr>
+	<%end%>
+
+</table>

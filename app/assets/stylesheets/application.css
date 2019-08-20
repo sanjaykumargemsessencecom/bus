@@ -1,0 +1,82 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ .check_box {
+ 	width:50%;
+ }
+ .search_form {
+ 	margin-top:-60px;
+ 	padding:15px 15px;
+ 	background-color: lightblue;
+ 	color:black;
+ }
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+  height: 30%;
+  width: 140px;
+  position: fixed;
+  z-index: 1;
+  right:0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 15px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.main {
+  margin-left: 160px; /* Same as the width of the sidenav */
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+#div1 {
+ font-size: 20px;
+ color: red;
+ text-align: right;
+ margin-top: -50px;
+}
+#reservation_date {
+  width: 250px;
+  border-radius: 5px;
+  color:green;
+  height:30px;
+}
+#reservation_booked_seats {
+  width: 250px;
+  border-radius: 5px;
+  color:green;
+  height:30px;
+
+}
+</style>

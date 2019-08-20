@@ -1,0 +1,39 @@
+
+<table class="table">
+<th>Bus Name</th>
+<th>Bus No</th>
+<th>Source</th>
+<th>Destination</th>
+<th>Total Seats</th>
+<th>Rent</th>
+<th>Do</th>
+
+<tr class="success">
+<td>
+<%=@bus.bus_name%>
+</td>
+<td>
+<%=@bus.bus_no%>
+</td>
+<td>
+<%=@bus.source%>
+</td>
+<td>
+<%=@bus.destination%>
+</td>
+<td>
+<%=@bus.total_seats%>
+</td>
+<td>
+<%=@bus.rent%>
+</td>
+<td>
+<%= link_to "Book",{controller: 'reservations',
+             action: 'new',
+             customer_id: current_user.id,
+             id: @bus.id}%>
+</td>
+<tr>
+
+</table>
+

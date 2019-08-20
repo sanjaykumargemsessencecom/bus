@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bus_name: MyString
+  bus_no: 1
+  source: MyString
+  destination: MyString
+  rent: 1
+  status: 1
+  user: one
+
+two:
+  bus_name: MyString
+  bus_no: 1
+  source: MyString
+  destination: MyString
+  rent: 1
+  status: 1
+  user: two

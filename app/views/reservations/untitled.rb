@@ -1,0 +1,1 @@
+check_reservations.html.erb

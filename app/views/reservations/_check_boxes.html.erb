@@ -1,0 +1,11 @@
+<%@seats.each do |seat_nos|%>
+    <%=seat_nos%>.
+    <% if seat_booked?(seat_nos)%>
+    	<%= check_box_tag 'id', 'accepted', false, disabled: true, checked: :checked%>&nbsp&nbsp&nbsp
+    <%else%>
+   		<%= check_box_tag "reservation[seat_nos][]", seat_nos,nil, class: "single-checkbox" %>&nbsp&nbsp&nbsp
+    <%end%>
+<%end%>
+<div class="seat" data-seat="<%=params[:b_seat]%>">
+
+</div>
