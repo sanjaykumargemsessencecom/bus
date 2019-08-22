@@ -1,37 +1,38 @@
 <table class="table">
-    <thead>
-      <tr>
-        <th>Bus Name</th>
-        <th>Bus No</th>
-        <th>Source</th>
-        <th>Destination</th>
-        <th>Date</th>
-        <th>Booked Seats</th>
-        <th>Seats no.</th>
-        <th>Rent</th>
-     </tr>
-   </thead>
+  <thead>
+    <tr>
+      <th>Bus Name</th>
+      <th>Bus No</th>
+      <th>Source</th>
+      <th>Destination</th>
+      <th>Date</th>
+      <th>Booked Seats</th>
+      <th>Seats no.</th>
+      <th>Rent</th>
+   </tr>
+ </thead>
 <tbody>     
-  <%@buses=@buses.flatten%>
-  <%@buses.zip(@reservation).each do |bus,reservation|%>
+  <%#@buses=@buses.flatten%>
+  <%@reservation.each do |reservation|%>
+    <% bus = reservation.bus %>
    <tr class="info">
     <td>
-    <%=bus.bus_name%>
+      <%=bus.bus_name%>
     </td>
     <td>
-    <%=bus.bus_no%>
+      <%=bus.bus_no%>
     </td>
     <td>
-    <%=bus.source%>
+      <%=bus.source%>
     </td>
     <td>
-    <%=bus.destination%>
+      <%=bus.destination%>
     </td>
     <td>
-    <%=reservation.date%>
+      <%=reservation.date%>
     </td>
     <td>
-    <%=reservation.booked_seats%>
+      <%=reservation.booked_seats%>
     </td>
     <td>
     <%seat_no(reservation.id).tap do |seat|%>
@@ -39,26 +40,19 @@
     <%end%>
     </td>
     <td>
-    <%=bus.rent%>
+      <%=bus.rent%>
     </td>
     <td>
-      <% if booked?(bus.id)%>
-    <button class="btn btn-default"><%= link_to "Book Now",{controller: 'reservations',
-                 action: 'show',
-                 bus_id: bus.id}%>
-             </button>
-             <%else%>
-    <button class="btn btn-default"><%= link_to "Cancel",{controller: 'reservations',
+      <% if !booked?(bus.id)%>
+        <button class="btn btn-default"><%= link_to "Cancel",{controller: 'reservations',
                  action: 'destroy',
                  bus_id: bus.id,
-                 id: 1}, method: :delete%>
-             
-           </button>
+                 id: reservation.id}, data: { confirm: "Are you sure?" }, method: :delete%>            
+        </button>
       <%end%>
     </td>
-
-  <tr>
-  	<%end%>
+   <tr>
+  <%end%>
        
   </tbody>
 </table>

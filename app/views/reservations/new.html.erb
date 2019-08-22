@@ -1,28 +1,27 @@
 <div id="div1">Register in <span id="time">05:00</span> minutes!</div>
 
 <div class="container" data-bus="<%= @bus.id %>">
-<%=form_for [@user,@bus,@reservation], url: bus_reservations_path(@bus.id), html: { method: :post } do |form| %>
+  <%=form_for [@user,@bus,@reservation], url: bus_reservations_path(@bus.id), html: { method: :post } do |form| %>
     <div class="form-group">
       <%= form.label :to_date %><br>
       <%= form.date_field("date", min: Time.now)%>
     </div>
     <div class="form-group">
-    <%= form.label :no_of_seats %><br>
-    <%= form.number_field :booked_seats , onchange: "total_seat()",value: nil,:required=> true %><br>
+      <%= form.label :no_of_seats %><br>
+      <%= form.number_field :booked_seats,value: nil,:required=> true %><br>
     </div>
     
-<br>
+  <br>
 
-<div class="check_box">
-
-  <div class="seats">
-    <%= render 'check_boxes' %>
-  </div>
+  <div class="check_box">
+    <div class="seats">
+      <%= render 'check_boxes' %>
+    </div>
   </div>
    <br>
     <%= form.submit class: "btn btn-primary" %>
 
-<% end %>
+  <% end %>
 </div>
 <script type="text/javascript">
   
@@ -44,7 +43,6 @@
 
    window.onmouseover = setTimeout(
       function() {
-      document.getElementById('div1').style.display='none';
       window.location.href = "http://localhost:3000";
     }, 60000*5);
 }
@@ -52,7 +50,7 @@
 window.onmouseover = function () {
     var fiveMinutes = 60*5,
         display = document.querySelector('#time');
-    startTimer(fiveMinutes, display);
+    startTimer(fiveMinutes-1, display);
 };
 
 </script>

@@ -10,12 +10,14 @@ $(document).on 'change', '#reservation_date', ->
   	data: 
   		date: date
   	type: 'get'
+
 $(document).on 'change', '#reservation_booked_seats', ->
   limit = $('.seat').data('seat')
   d = document.getElementById('reservation_booked_seats').value
   limit = Number limit + Number d
-  $('.single-checkbox').on 'change', (evt) ->
+  
+  $(document).on 'change', '.single-checkbox', (evt) ->
+    @checked = true
     if $(this).siblings(':checked').length >= limit
       @checked = false
-    return
-  return
+    

@@ -13,7 +13,8 @@
    </tr>
   </thead>
   <tbody>     
-    <%@buses.zip(@reservation).each do |bus,reservation|%>
+  <%@reservation.each do |reservation|%>
+    <% bus = reservation.bus %>
      <tr class="info">
       <td>
         <%=bus.bus_name%>
@@ -45,7 +46,6 @@
       <% if !booked?(bus.id)%>
         <button class="btn btn-default"><%= link_to "Cancel",{controller: 'reservations',
                    action: 'destroy',
-                   bus_id: bus.id,
                    id: reservation.id}, data: { confirm: "Are you sure?" }, method: :delete%>
                
         </button>

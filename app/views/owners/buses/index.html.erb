@@ -35,24 +35,17 @@
 <%=bus.status%>
 </td>
 <td>
-<button class="btn btn-default"><%= link_to "Edit",{controller: 'buses',
-             action: 'edit',
-             owner_id: current_user.id,
-             id: bus.id},method: :get%>
+<button class="btn btn-default"><%= link_to "Edit",edit_owners_bus_path(bus.id),method: :get%>
              </button>
 </td>
 <td>
-<button class="btn btn-default"><%= link_to "Delete",{controller: 'buses',
-             action: 'destroy',
-             owner_id: current_user.id,
-             id: bus.id}, data: { confirm: "Are you sure?" },method: :delete%>
+<button class="btn btn-default"><%= link_to "Delete",owners_bus_path(bus.id), data: { confirm: "Are you sure?" },method: :delete%>
              </button>
 </td>
 <td>
 	<td>
   <button class="btn btn-default"><%= link_to "Check Reservations",{controller: 'reservations',
              action: 'check_reservations',
-             owner_id: current_user.id,
              id: bus.id}, method: :get%>
          
        </button>

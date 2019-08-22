@@ -9,11 +9,12 @@
       <th>Booked Seats</th>
       <th>Seats no.</th>
       <th>Rent</th>
-    </tr>
-  </thead>
+   </tr>
+ </thead>
 <tbody>     
-  <%@buses=@buses.flatten%>
-  <%@buses.zip(@reservation).each do |bus,reservation|%>
+  <%#@buses=@buses.flatten%>
+  <%@reservation.each do |reservation|%>
+    <% bus = reservation.bus %>
    <tr class="info">
     <td>
       <%=bus.bus_name%>
@@ -45,12 +46,12 @@
       <% if !booked?(bus.id)%>
         <button class="btn btn-default"><%= link_to "Cancel",{controller: 'reservations',
                  action: 'destroy',
-                 id: reservation.id}, data: { confirm: "Are you sure?" }, method: :delete%>
+                 id: reservation.id}, data: { confirm: "Are you sure?" }, method: :delete%>            
         </button>
       <%end%>
-     </td>
-    <tr>
-   <%end%>
+    </td>
+   <tr>
+  <%end%>
        
   </tbody>
 </table>

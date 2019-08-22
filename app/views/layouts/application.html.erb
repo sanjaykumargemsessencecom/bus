@@ -53,8 +53,8 @@
    <%if current_user%>
    <% if current_user.status==2 %>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><%if current_user%>
-        <%=link_to("Add Bus",new_owner_bus_path(current_user.id), style:'color:white;margin-top:-30px')%>
-          <%=link_to("All Bus",owner_buses_path(current_user.id), style:'color:white;margin-top:-50px;margin-left:70px')%>
+        <%=link_to("Add Bus",new_owners_bus_path, style:'color:white;margin-top:-30px')%>
+          <%=link_to("All Bus",owners_buses_path, style:'color:white;margin-top:-50px;margin-left:70px')%>
     <%end%> 
       
       </li>
@@ -80,11 +80,11 @@
       <li>
         <%end%>
        <%if user_owner?%>
-          <a href="#"><span class="glyphicon glyphicon-log-in"><%=link_to("Account",owner_account_path(current_user.id), style:'color:white;margin-top:-10px;margin-left:20px')%></span></a></li>
+          <a href="#"><span class="glyphicon glyphicon-log-in"><%=link_to("Account",owners_account_path, style:'color:white;margin-top:-10px;margin-left:20px')%></span></a></li>
       <li>
        <%end%>
         <%if user_customer?%>
-             <a href="#"><span class="glyphicon glyphicon-log-in"><%=link_to("Account",customer_account_path(current_user.id), style:'color:white;margin-top:-10px;margin-left:20px')%></span></a></li>
+             <a href="#"><span class="glyphicon glyphicon-log-in"><%=link_to("Account",customers_account_path, style:'color:white;margin-top:-10px;margin-left:20px')%></span></a></li>
       <li>
         <%end%>
          <%=link_to(current_user.name.capitalize,edit_user_registration_path, style:'color:white;margin-top:40px;margin-left:0px;background-color:slategrey ')%></span></a></li>

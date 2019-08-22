@@ -1,0 +1,35 @@
+<div class="container">
+<%=form_for [@owner,@bus], url: owners_bus_path(@bus.id), html: { method: :patch } do |form| %>
+     <div class="form-group">
+    <%= form.label :bus_name %><br>
+    <%= form.text_field :bus_name  %><br>
+    </div>
+   <div class="form-group">
+    <%= form.label :Registration_number %><br>
+    <%= form.text_field :bus_no  %><br>
+    </div>
+   <div class="form-group">
+    <%= form.label :source %><br>
+    <%= form.text_field :source %><br>
+    </div>
+  <div class="form-group">
+    <%= form.label :destination %><br>
+    <%= form.text_field :destination  %><br>
+    </div>
+  <div class="form-group">
+    <%= form.label :rent %><br>
+    <%= form.text_field :rent  %><br>
+    </div>
+   <div class="form-group">
+    <%= form.label :total_seats %><br>
+    <%= form.text_field :total_seats  %>
+    </div>
+   <div class="form-group">
+    <%= form.label :status %><br>
+    <%= form.text_field :status  %>
+    </div>
+  
+    <%= form.submit class: "btn btn-primary" %>
+
+<% end %>
+</div>

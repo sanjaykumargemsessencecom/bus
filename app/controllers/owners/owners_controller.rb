@@ -1,4 +1,4 @@
-class OwnersController < ApplicationController
+class Owners::OwnersController < ApplicationController
 	before_action :authenticate_user!, only:[:index,:show,:new,:destroy,:update]
 	before_action :current_user_owner?
 	before_action :current_user

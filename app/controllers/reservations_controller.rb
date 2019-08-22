@@ -2,29 +2,27 @@ class ReservationsController < ApplicationController
 	before_action :authenticate_user!, only:[:index,:show,:new,:destroy,:update]
   before_action :bus_params, only:[:create]
 	def show 
-       @bus=Bus.find_by_id(params[:id])
+    @bus=Bus.find_by_id(params[:id])
 	end
 
   def new
-     @bus=Bus.find_by_id(params[:bus_id])
-     cookies[:bus_id]=@bus.id
-     @user=User.find_by_id(current_user.id)
-     @reservation=Reservation.new
-
-     @date = params[:date].to_date if params[:date]
-
-     @reservation_value=Reservation.where("bus_id=? and date=?",cookies[:bus_id],@date)
-     @seat_no=[]
-     if @reservation_value
-        @reservation_value.each do |r|
-        @seat_no<< r.seats.map(&:seat_nos)
-        end
-     end
-     @seats=Array(1..@bus.total_seats)
-     respond_to do |format|
-       format.js
-       format.html
-     end
+    @bus=Bus.find_by_id(params[:bus_id])
+    cookies[:bus_id]=@bus.id
+    @user=User.find_by_id(current_user.id)
+    @reservation=Reservation.new
+    @date = params[:date].to_date if params[:date]
+    @reservation_value=Reservation.where("bus_id=? and date=?",cookies[:bus_id],@date)
+    @seat_no=[]
+    if @reservation_value
+      @reservation_value.each do |r|
+      @seat_no<< r.seats.map(&:seat_nos)
+      end
+    end
+    @seats=Array(1..@bus.total_seats)
+    respond_to do |format|
+     format.js
+     format.html
+    end
   end
 
 	def create
@@ -44,7 +42,7 @@ class ReservationsController < ApplicationController
        @reservation.seats.create(seat_nos: value)
     end
     flash[:notice]="Booked Succeccfully"
-    redirect_to customers_path
+    redirect_to root_path
   end
 
   def check_reservations
@@ -68,7 +66,7 @@ class ReservationsController < ApplicationController
     end
   end
   def destroy
-    @reservation_value=Reservation.where("bus_id=? and user_id=?",params[:bus_id],current_user.id).order(id: :desc).limit(1)
+    @reservation_value=Reservation.where("id=?",params[:id])
     @reservation_id=@reservation_value
     @reservation=Reservation.find_by(id: @reservation_id)
     @reservation.destroy
@@ -78,4 +76,5 @@ class ReservationsController < ApplicationController
     cookies[:booked_seats]=params.require(:reservation).permit(:booked_seats).values.first.to_i
     params.require(:reservation).permit(:booked_seats,:date).merge(bus_id: cookies[:bus_id],user_id: current_user.id)
   end
+
 end
