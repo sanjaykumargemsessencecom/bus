@@ -44,9 +44,7 @@
 </td>
 <td>
 	<td>
-  <button class="btn btn-default"><%= link_to "Check Reservations",{controller: 'reservations',
-             action: 'check_reservations',
-             id: bus.id}, method: :get%>
+  <button class="btn btn-default"><%= link_to "Check Reservations",owners_bus_check_reservations_path(bus.id), method: :get%>
          
        </button>
 

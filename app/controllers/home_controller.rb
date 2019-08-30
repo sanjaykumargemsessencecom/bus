@@ -17,18 +17,6 @@ class HomeController < ApplicationController
 	    cookies[:source]=params[:source]
 	    cookies[:destination]=params[:destination] 
 	    cookies[:date]=params[:date]
-	    @reservation_value=[]
-	    @buses.each do |bus|    
-		    @reservation_value<<bus.reservations
-		  end
-		  @reservation_value=@reservation_value.flatten
-		  @seat_no=[]
-		  if @reservation_value
-		    @reservation_value.each do |r|
-		    @seat_no<< r.seats.map(&:seat_nos)
-		  end
-
-    end
   end  
 	end
 	def search

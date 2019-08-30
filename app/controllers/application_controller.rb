@@ -2,8 +2,6 @@ class ApplicationController < ActionController::Base
 	before_action :authenticate_user!, only:[:new,:destroy,:update]
 	before_action :current_user
 	before_action :configure_permitted_parameters, if: :devise_controller?
-	before_action :active
-
 
 	def user_admin?
 		if current_user
@@ -14,6 +12,7 @@ class ApplicationController < ActionController::Base
 	 		end	
 	   end
 	end
+
 	def user_owner? 
 		if current_user
 			if current_user.role=="owner"
@@ -23,6 +22,7 @@ class ApplicationController < ActionController::Base
 			end	
 		end
 	end
+
 	def user_customer?
 		if current_user
 			if current_user.role=="customer"
@@ -32,9 +32,7 @@ class ApplicationController < ActionController::Base
 			end	
 		end
 	end
-	def active
 
-	end
 	helper_method :user_admin?
 	helper_method :user_owner?
 	helper_method :user_customer?

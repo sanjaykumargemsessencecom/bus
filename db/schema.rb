@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_07_100631) do
+ActiveRecord::Schema.define(version: 2019_08_23_081102) do
 
   create_table "buses", force: :cascade do |t|
     t.string "bus_name"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2019_08_07_100631) do
     t.integer "booked_seats", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status", default: "confirmed"
     t.index ["bus_id"], name: "index_reservations_on_bus_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end

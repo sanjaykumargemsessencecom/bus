@@ -1,14 +1,13 @@
 class ReservationsController < ApplicationController
 	before_action :authenticate_user!, only:[:index,:show,:new,:destroy,:update]
   before_action :bus_params, only:[:create]
-	def show 
-    @bus=Bus.find_by_id(params[:id])
-	end
+	def index
+      @reservation= current_user.reservations    
+  end
 
   def new
     @bus=Bus.find_by_id(params[:bus_id])
     cookies[:bus_id]=@bus.id
-    @user=User.find_by_id(current_user.id)
     @reservation=Reservation.new
     @date = params[:date].to_date if params[:date]
     @reservation_value=Reservation.where("bus_id=? and date=?",cookies[:bus_id],@date)
@@ -31,7 +30,7 @@ class ReservationsController < ApplicationController
       flash[:flash]="Wrong number of seats"
       redirect_to customers_path and return
     end
-    @user=User.find_by_id(current_user.id)
+    @user=current_user
     @user.reservations.new(bus_params )
     @user.save
     @reservation_value=Reservation.where("bus_id=? and user_id=?",cookies[:bus_id],current_user.id).order(id: :desc).limit(1)
@@ -58,23 +57,19 @@ class ReservationsController < ApplicationController
       @user<<User.where("id=?",r.user_id)
     end
   end
-  def reservation_date
-    @country = Reservation.find(params[:id])
-    
-    respond_to do |format|
-       format.js {  }
-    end
+  def cancelled
+    @reservation=Reservation.find_by(id: params[:reservation_id])
+    @reservation.status="cancelled"
+    @reservation.update
+    redirect_to reservations_path
   end
   def destroy
-    @reservation_value=Reservation.where("id=?",params[:id])
-    @reservation_id=@reservation_value
-    @reservation=Reservation.find_by(id: @reservation_id)
+    @reservation=Reservation.find_by(id: params[:id])
     @reservation.destroy
-    redirect_to customer_account_path(current_user.id)
+    redirect_to reservations_path
   end
   def bus_params
     cookies[:booked_seats]=params.require(:reservation).permit(:booked_seats).values.first.to_i
     params.require(:reservation).permit(:booked_seats,:date).merge(bus_id: cookies[:bus_id],user_id: current_user.id)
   end
-
 end

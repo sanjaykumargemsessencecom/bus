@@ -1,5 +1,9 @@
 {
   "name": "bus_reservation",
   "private": true,
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "cypress": "^3.4.1",
+    "electron": "^6.0.4"
+  }
 }
