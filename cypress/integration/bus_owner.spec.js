@@ -1,36 +1,26 @@
-/// <reference types="Cypress" />
 
-describe('Admin index page', () => {
-	 beforeEach(() => {
-    cy.fixture('users/admin.json').then((data) => {
+describe('Owner index page', () => {
+	beforeEach(() => {
+		cy.fixture('users/bus_owner.json').then((data) => {
     cy.login(data.email,data.password)
     cy.visit('/')
-  })    
-  })
+  })		
+	})
 
-  afterEach(() => {
+	afterEach(() => {
     cy.logout()
     cy.contains('Signed out successfully')
-  })
+	})
 
-	it('admin index page', () => {
+	it('owner index page', () => {
 
-	  cy.get('tbody > :nth-child(1) > th').should(($th) => {
-      expect($th.eq(0)).to.contain('Bus Name')
-      expect($th.eq(1)).to.contain('Bus No')
-      expect($th.eq(2)).to.contain('Source')
-      expect($th.eq(3)).to.contain('Destination')
-      expect($th.eq(4)).to.contain('Available Seats')
-      expect($th.eq(5)).to.contain('Rent')
-      expect($th.eq(6)).to.contain('Do')
-    })
-
-
+	  cy.contains('Owner')
+        
 	  cy.get('.search_form')
 	    .find('#source')
       .type('Obedullaganj')
       .should('have.value','Obedullaganj')
-    
+
     cy.get('.search_form')
 	    .find('#destination')
       .type('Goharganj')
@@ -49,14 +39,15 @@ describe('Admin index page', () => {
       .first()
       .contains('Goharganj')
 
+    cy.get(':nth-child(2) > :nth-child(7) > .btn')
+      .should('have.class','btn btn-default')
+      .contains('Book')
+
     cy.get(':nth-child(2) > :nth-child(7) > .btn > a')
       .click()
-      
     cy.wait(100)
-
     cy.url().should('include', '/reservations/new')
-      
-    cy.wait(100)
+    
 	})
 
 })

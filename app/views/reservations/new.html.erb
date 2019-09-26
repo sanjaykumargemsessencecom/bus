@@ -41,13 +41,13 @@
         }
     }, 1000);
 
-   window.onmouseover = setTimeout(
+   window.onload = setTimeout(
       function() {
       window.location.href = "http://localhost:3000";
     }, 60000*5);
 }
 
-window.onmouseover = function () {
+window.onload = function () {
     var fiveMinutes = 60*5,
         display = document.querySelector('#time');
     startTimer(fiveMinutes-1, display);

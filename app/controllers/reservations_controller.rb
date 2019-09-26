@@ -63,6 +63,7 @@ class ReservationsController < ApplicationController
     @reservation.update
     redirect_to reservations_path
   end
+  
   def destroy
     @reservation=Reservation.find_by(id: params[:id])
     @reservation.destroy

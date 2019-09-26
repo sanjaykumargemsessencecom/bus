@@ -76,15 +76,15 @@
     <%if user_admin?%>
        <a href="#"><span class="glyphicon glyphicon-log-in"><%=link_to("Bus Owners",admins_users_path, style:'color:white;margin-top:-10px;margin-left:20px')%></span></a></li>
       <li>
-      <a href="#"><span class="glyphicon glyphicon-log-in"><%=link_to("Account",admins_reservations_path, style:'color:white;margin-top:-10px;margin-left:20px')%></span></a></li>
+      <a href="#"><span class="glyphicon glyphicon-log-in"><%=link_to("Account",admins_reservations_path, style:'color:white;margin-top:-10px;margin-left:20px', class: 'account')%></span></a></li>
       <li>
         <%end%>
        <%if user_owner?%>
-          <a href="#"><span class="glyphicon glyphicon-log-in"><%=link_to("Account",owners_reservations_path, style:'color:white;margin-top:-10px;margin-left:20px')%></span></a></li>
+          <a href="#"><span class="glyphicon glyphicon-log-in"><%=link_to("Account",owners_reservations_path, style:'color:white;margin-top:-10px;margin-left:20px', class: 'account')%></span></a></li>
       <li>
        <%end%>
         <%if user_customer?%>
-             <a href="#"><span class="glyphicon glyphicon-log-in"><%=link_to("Account",reservations_path, style:'color:white;margin-top:-10px;margin-left:20px')%></span></a></li>
+             <a href="#"><span class="glyphicon glyphicon-log-in"><%=link_to("Account",reservations_path, style:'color:white;margin-top:-10px;margin-left:20px', class: 'account')%></span></a></li>
       <li>
         <%end%>
          <%=link_to(current_user.name.capitalize,edit_user_registration_path, style:'color:white;margin-top:40px;margin-left:0px;background-color:slategrey ')%></span></a></li>
@@ -102,5 +102,6 @@
        <p class="alert"><%= alert %></p>
 
     <%= yield %>
+    
   </body>
 </html>

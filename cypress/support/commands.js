@@ -1,17 +1,30 @@
-Cypress.Commands.add('login', (email,password) => {
-  cy.visit('users/sign_in')
-  cy.get('#user_email')
-      .type(email)
-      .should("have.value", email);
+Cypress.Commands.add("login", (email,password) => {
+   cy.request({
+        method: 'GET',
+        url: '/users/sign_in'
+    })    
+    .then((response)=>{
+        let X = response.body
+        let token = Cypress.$(X).find('form').find('input[name="authenticity_token"]').val()
+        cy.log('token')
+        cy.log(X)
+        cy.request({
+          method: 'POST',
+          url: '/users/sign_in',
+          body: {
+            'authenticity_token': token,
+            'user': {
+              'email' : email,
+              'password': password
+            }
+          }           
+        })
+    })
     
-  cy.get('#user_password')
-      .type(password)
-      .should("have.value", password);
-  cy.get("form").submit();
+
 
 })
 Cypress.Commands.add('logout', () => {
-  cy.visit('/')
   cy.get('.logout').click()
 
 })

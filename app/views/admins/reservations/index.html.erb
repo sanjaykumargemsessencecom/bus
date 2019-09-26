@@ -9,11 +9,13 @@
       <th>Booked Seats</th>
       <th>Seats no.</th>
       <th>Rent</th>
+      <th>Reservation No</th>
+      <th>Do</th>
     </tr>
   </thead>
 <tbody>     
-  <%@buses=@buses.flatten%>
-  <%@buses.zip(@reservation).each do |bus,reservation|%>
+  <%@reservation.each do |reservation|%>
+    <% bus = reservation.bus %>
    <tr class="info">
     <td>
       <%=bus.bus_name%>
@@ -40,6 +42,9 @@
     </td>
     <td>
       <%=bus.rent%>
+    </td>
+    <td>
+      <%=reservation.id%>
     </td>
     <td>
       <% if !booked?(bus.id)%>

@@ -25,22 +25,22 @@
 <th>Available Seats</th>
 <th>Rent</th>
 <th>Do</th>
-<%@buses.each do |bus|%>
+ <%@buses.each do |bus|%>
 <tr class="info">
 <td>
-<%=bus.bus_name%>
+ <%=bus.bus_name%>
 </td>
 <td>
-<%=bus.bus_no%>
+ <%=bus.bus_no%>
 </td>
 <td>
-<%=bus.source%>
+ <%=bus.source%>
 </td>
 <td>
-<%=bus.destination%>
+ <%=bus.destination%>
 </td>
 <td>
-<%=available(bus.id)%>
+ <%=available(bus.id)%>
 </td>
 <td>
 <%=bus.rent%>

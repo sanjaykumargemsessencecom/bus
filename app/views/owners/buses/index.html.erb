@@ -9,6 +9,7 @@
 <th>Status</th>
 <th>Edit</th>
 <th>Delete</th>
+<th>Check Reservation</th>
 
 <%@buses.each do |bus|%>
 <tr class="info">
@@ -41,8 +42,7 @@
 <td>
 <button class="btn btn-default"><%= link_to "Delete",owners_bus_path(bus.id), data: { confirm: "Are you sure?" },method: :delete%>
              </button>
-</td>
-<td>
+
 	<td>
   <button class="btn btn-default"><%= link_to "Check Reservations",owners_bus_check_reservations_path(bus.id), method: :get%>
          

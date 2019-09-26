@@ -9,6 +9,8 @@
       <th>Booked Seats</th>
       <th>Seats no.</th>
       <th>Rent</th>
+      <th>Reservation No</th>
+      <th>Do</th>
    </tr>
  </thead>
 <tbody>     
@@ -43,8 +45,11 @@
       <%=bus.rent%>
     </td>
     <td>
+      <%=reservation.id%>
+    </td>
+    <td>
       <% if !booked?(bus.id)%>
-        <button class="btn btn-default"><%= link_to "Cancel",reservation_cancelled_path(reservation.id), data: { confirm: "Are you sure?" }, method: :patch%>            
+        <button class="btn btn-default"><%= link_to "Cancel",reservation_path(reservation.id), data: { confirm: "Are you sure?" }, method: :delete%>            
         </button>
       <%end%>
     </td>
