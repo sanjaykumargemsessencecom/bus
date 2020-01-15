@@ -5,7 +5,7 @@ describe('Home page', () => {
     cy.visit('/')
   })    
   context('Index Page', function(){
-    it('Index page should contain', () => {
+    it.only('Index page should contain', () => {
       cy.get('.changing_text')    
       .contains('Bus Reservation')
       
