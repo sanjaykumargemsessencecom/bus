@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 	before_action :configure_permitted_parameters, if: :devise_controller?
 
 	def user_admin?
-		if current_user
+	  if current_user
 			if current_user.role=="admin"
 				true
 			else

@@ -6,8 +6,8 @@ class Admins::ReservationsController < ApplicationController
       @reservation.each do |r|
       bus_id=r.bus_id
       @buses<<Bus.where("id=?",bus_id)
+    end
   end
-end
 
   def check_reservations
     @bus=Bus.find_by_id(params[:id])

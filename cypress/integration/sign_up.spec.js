@@ -33,5 +33,11 @@ describe('User Sign Up', () => {
     cy.get('form').submit()
     cy.contains('Welcome! You have signed up successfully')
   })
+  it('Display form validations for Email has already been taken', function () {
+    cy.get('#user_password')
+    cy.get('#user_password_confirmation')
+    cy.get('form').submit()
+    cy.get('#error_explanation').should('contain','Email has already been taken')
+  })
 
 })

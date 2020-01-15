@@ -14,7 +14,7 @@ class ReservationsController < ApplicationController
     @seat_no=[]
     if @reservation_value
       @reservation_value.each do |r|
-      @seat_no<< r.seats.map(&:seat_nos)
+        @seat_no<< r.seats.map(&:seat_nos)
       end
     end
     @seats=Array(1..@bus.total_seats)
